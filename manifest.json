@@ -1,0 +1,21 @@
+{
+  "name": "La mia app",
+  "short_name": "App",
+  "start_url": "/guida-interattiva/index.html",
+  "scope": "/guida-interattiva/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e63946",
+  "icons": [
+    {
+      "src": "/guida-interattiva/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/guida-interattiva/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
