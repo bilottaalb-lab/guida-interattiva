@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>La mia app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#e63946">
+  <link rel="manifest" href="/guida-interattiva/manifest.json">
+  <style>
+    body {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Rome_from_Castel_Sant%27Angelo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      text-align: center;
+      padding-top: 100px;
+      font-family: sans-serif;
+    }
+
+    button, select {
+      font-size: 18px;
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+    }
+
+    iframe {
+      width: 80%;
+      height: 500px;
+      border: none;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="home">
+    <button onclick="alert('Chi siamo')">Chi siamo</button>
+    <select onchange="loadLanguage(this.value)">
+      <option value="">Seleziona lingua</option>
+      <option value="it">Italiano</option>
+      <option value="en">Inglese</option>
+      <option value="fr">Francese</option>
+      <option value="de">Tedesco</option>
+      <option value="es">Spagnolo</option>
+    </select>
+  </div>
+  <div id="webview"></div>
+
+  <script>
+    function loadLanguage(lang) {
+      const urls = {
+        it: 'https://tuosito.com/it',
+        en: 'https://tuosito.com/en',
+        fr: 'https://tuosito.com/fr',
+        de: 'https://tuosito.com/de',
+        es: 'https://tuosito.com/es'
+      };
+      document.getElementById('webview').innerHTML =
+        `<iframe src="${urls[lang]}" title="${lang}"></iframe>`;
+    }
+
+    // Registrazione del service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/guida-interattiva/sw.js')
+        .then(() => console.log('✅ Service Worker registrato'))
+        .catch(err => console.error('❌ Errore Service Worker:', err));
+    }
+  </script>
+</body>
+</html>
